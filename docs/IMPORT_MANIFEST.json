@@ -1,0 +1,157 @@
+[
+  {
+    "name": "Groza_morey_v0_8_1_ready.zip",
+    "bytes": 6749910,
+    "sha256": "33cc5d6a6d917448e60e2e758c1efb447ccb4ef0a7b525aee3b2b36a358ef4cc"
+  },
+  {
+    "name": "groza_morey.py",
+    "bytes": 96409,
+    "sha256": "0ba555fe6ea1b28ce3e5c20d7ceb2e76943bced86331783c71ce4dfe8fba752c"
+  },
+  {
+    "name": "groza_morey_mobile.html",
+    "bytes": 12561,
+    "sha256": "78ac1370863f401bb61411d7e9a81a65d4d98d30cef44943f8a6ba5b641d3433"
+  },
+  {
+    "name": "groza_morey_v0_10.py",
+    "bytes": 117235,
+    "sha256": "529c93fbb097d75fab10cfb4dd7982a408a195b9ed5502363a161b72c7398f87"
+  },
+  {
+    "name": "groza_morey_v0_10_1_compass.py",
+    "bytes": 118717,
+    "sha256": "c4b92836ff914fb22d4e581c6da38e4e86c84e7e1ee697dd2e042e13775c163b"
+  },
+  {
+    "name": "groza_morey_v0_11_islands_city.py",
+    "bytes": 124189,
+    "sha256": "908d99e4a24e242b86811d11eb76feb409ec87d581245440154e57ae1e04286d"
+  },
+  {
+    "name": "groza_morey_v0_12_HD.py",
+    "bytes": 126685,
+    "sha256": "deaa5f03a03c4c7849726b4b28864c6bf103334ed4d61708943b84d8db73c8c3"
+  },
+  {
+    "name": "groza_morey_v0_13_ALL_IN_ONE.py",
+    "bytes": 169751,
+    "sha256": "b275c517c5ba11ecf6301dc02c2a4978289a50158c67964dc26c3878e2c416d5"
+  },
+  {
+    "name": "groza_morey_v0_14_ART.py",
+    "bytes": 719263,
+    "sha256": "ad0a7b9af6d8d6d57622d8eb49463975ce0780a490331fc56b4d5d0a6ab09fa1"
+  },
+  {
+    "name": "groza_morey_v0_15_interiors.py",
+    "bytes": 724057,
+    "sha256": "0e5ebf32a2cedbfff0802da4f2adfcd5b861b3120244a86435a329a2cd158e9f"
+  },
+  {
+    "name": "groza_morey_v0_18_three_updates.py",
+    "bytes": 731023,
+    "sha256": "57ece570cab0da0095cb73baab9c44ef147938a67d55882058937d2430bf5ccc"
+  },
+  {
+    "name": "groza_morey_v0_23_five_updates(1).py",
+    "bytes": 739020,
+    "sha256": "5c2de3b2db52e9600be9a0746314f0459e61c1ff485fcbfdd71aa0f72b765ea6"
+  },
+  {
+    "name": "groza_morey_v0_23_five_updates.py",
+    "bytes": 739020,
+    "sha256": "5c2de3b2db52e9600be9a0746314f0459e61c1ff485fcbfdd71aa0f72b765ea6"
+  },
+  {
+    "name": "groza_morey_v0_24_sails_night_fishing(1).py",
+    "bytes": 651158,
+    "sha256": "337b4a0203261c7eb726bb80ed8f41d7cc51d12a4166fb005af2962d47b6cdbb"
+  },
+  {
+    "name": "groza_morey_v0_24_sails_night_fishing.py",
+    "bytes": 651158,
+    "sha256": "337b4a0203261c7eb726bb80ed8f41d7cc51d12a4166fb005af2962d47b6cdbb"
+  },
+  {
+    "name": "groza_morey_v0_25_1_fixed(1).py",
+    "bytes": 1132494,
+    "sha256": "be12e3a0fc6bbf53216ee50cea58458194115e9a92e0edd387460625a48e69c5"
+  },
+  {
+    "name": "groza_morey_v0_25_1_fixed.py",
+    "bytes": 1132494,
+    "sha256": "be12e3a0fc6bbf53216ee50cea58458194115e9a92e0edd387460625a48e69c5"
+  },
+  {
+    "name": "groza_morey_v0_25_fish_schools_sails.py",
+    "bytes": 1131756,
+    "sha256": "5117db25635fed5f527f40107c696c26c305ca0733176c0e2e07081242611c35"
+  },
+  {
+    "name": "groza_morey_v0_26_island_economy.py",
+    "bytes": 1163356,
+    "sha256": "c5f3bb0008789ff97f83cf06debcd8f8e8cf39044723233fb455abffcfaa298d"
+  },
+  {
+    "name": "groza_morey_v0_6_1(1).py",
+    "bytes": 99062,
+    "sha256": "8db7ab2dc6c9a26d2354ff5b0e197e359e50e016dc67bff781e5326c654a408f"
+  },
+  {
+    "name": "groza_morey_v0_6_1.py",
+    "bytes": 99062,
+    "sha256": "8db7ab2dc6c9a26d2354ff5b0e197e359e50e016dc67bff781e5326c654a408f"
+  },
+  {
+    "name": "groza_morey_v0_7.py",
+    "bytes": 104880,
+    "sha256": "2301e651c0bfca0d5729884ac7d848217cf43ca272706fc08e1b89265904a2db"
+  },
+  {
+    "name": "groza_morey_v0_8_1.py",
+    "bytes": 111849,
+    "sha256": "4f33e14eb9e2dc11d90c222febf8ad6b71213d1a2b1c19f56616553593e71db7"
+  },
+  {
+    "name": "groza_morey_v0_8_sound.py",
+    "bytes": 110511,
+    "sha256": "16fef427e6b6845795449bc279235c348f0a3473b512cbaa5c9027b2e891fa64"
+  },
+  {
+    "name": "groza_morey_v0_9(1).py",
+    "bytes": 113370,
+    "sha256": "1574f0080070f1b0160cd14ec9f17dd12fec83e355b68ae930a3f6c70abd8650"
+  },
+  {
+    "name": "groza_morey_v0_9.py",
+    "bytes": 113370,
+    "sha256": "1574f0080070f1b0160cd14ec9f17dd12fec83e355b68ae930a3f6c70abd8650"
+  },
+  {
+    "name": "groza_morey_v0_9_1_fixed.py",
+    "bytes": 113370,
+    "sha256": "330834fa78c3729a99d6c1cb6a7dead9fb25db09cc8bdbe6f541531bbf6f5162"
+  },
+  {
+    "name": "groza_morey_v0_9_2_two_views.py",
+    "bytes": 114983,
+    "sha256": "9bcb430bd3e8f8bcbb5bb5749e7eaf856c6637321f48fda9a884d384b3490322"
+  },
+  {
+    "name": "groza_morey_v0_9_3_fixed(1).py",
+    "bytes": 115294,
+    "sha256": "7b115cb3dae07f19f65fee4d0dbda6754405a56ac7b025043ad0efb9cf846410"
+  },
+  {
+    "name": "groza_morey_v0_9_3_fixed.py",
+    "bytes": 115294,
+    "sha256": "7b115cb3dae07f19f65fee4d0dbda6754405a56ac7b025043ad0efb9cf846410"
+  },
+  {
+    "name": "groza_morey_v0_9_4_ocean.py",
+    "bytes": 116934,
+    "sha256": "ea3ae044c0484be6aef984d16a8789b32edbc646353915a708fcd3dac940b384"
+  }
+]
