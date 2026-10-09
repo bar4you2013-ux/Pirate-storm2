@@ -1,7 +1,7 @@
 # Project instructions
 
 - Project: «Гроза морей» / Pirate Storm. Respond to the owner in Russian.
-- Main desktop entry point: `groza_morey.py`, imported unchanged from v0.27 ghost ship, markets and resource icons.
+- Main desktop entry point: `groza_morey.py`, based on v0.27 ghost ship, markets and resource icons; rendering enhanced in visual_art.py.
 - Stack: Python 3.10+ and Pygame 2.6.1. Install: `python -m pip install -r requirements.txt`.
 - Focus on gameplay mechanics and logic. Do not migrate to Godot or redesign graphics unless requested.
 - Keep `archive/` unchanged: these are historical originals, including duplicate copies.
@@ -13,3 +13,5 @@
 - For mechanic changes, run focused meaningful checks, update documentation and report actual results.
 - Make future changes in a branch and prepare a pull request. Avoid merging automatically unless explicitly requested.
 - Never commit runtime saves, logs, credentials or Python environments.
+
+- `visual_art.py` contains cached procedural artwork; keep rendering separate from gameplay state and use local seeded RNG for decoration.

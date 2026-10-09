@@ -5,6 +5,7 @@ import random
 import sys
 import os
 import base64
+import visual_art
 
 pygame.init()
 
@@ -822,143 +823,8 @@ class Building:
         self.color = color
 
     def draw(self):
-        sprite_names = {
-            "Таверна": "tavern.png",
-            "Банк": "bank.png",
-            "Магазин": "shop.png",
-            "Верфь": "shipyard.png"
-        }
-        sprite = get_sprite(sprite_names.get(self.name, "house.png"))
-        if sprite:
-            w,h=self.rect.width+30,self.rect.height+40
-            key=(sprite_names.get(self.name,"house.png"),w,h)
-            if not hasattr(self,"building_sprite"):
-                self.building_sprite=pygame.transform.smoothscale(sprite,(w,h))
-            screen.blit(self.building_sprite,(self.rect.x-15,self.rect.y-28))
-            draw_centered(self.name,self.rect.centerx,self.rect.y+77,
-                          WHITE,small_font)
-            return
-
-        # тень
-        shadow = self.rect.move(
-            7,
-            7
-        )
-
-        pygame.draw.rect(
-            screen,
-            (95, 78, 60),
-            shadow,
-            border_radius=5
-        )
-
-        # стены
-        pygame.draw.rect(
-            screen,
-            self.color,
-            self.rect,
-            border_radius=5
-        )
-
-        # деревянные балки
-        pygame.draw.line(
-            screen,
-            DARK_BROWN,
-            (
-                self.rect.x + 12,
-                self.rect.y
-            ),
-            (
-                self.rect.x + 12,
-                self.rect.bottom
-            ),
-            5
-        )
-
-        pygame.draw.line(
-            screen,
-            DARK_BROWN,
-            (
-                self.rect.right - 12,
-                self.rect.y
-            ),
-            (
-                self.rect.right - 12,
-                self.rect.bottom
-            ),
-            5
-        )
-
-        # крыша
-        pygame.draw.polygon(
-            screen,
-            DARK_BROWN,
-            [
-                (
-                    self.rect.x - 12,
-                    self.rect.y + 5
-                ),
-                (
-                    self.rect.centerx,
-                    self.rect.y - 35
-                ),
-                (
-                    self.rect.right + 12,
-                    self.rect.y + 5
-                )
-            ]
-        )
-
-        # дверь
-        pygame.draw.rect(
-            screen,
-            BROWN,
-            (
-                self.rect.centerx - 14,
-                self.rect.bottom - 42,
-                28,
-                42
-            )
-        )
-
-        # окна
-        for wx in (
-            self.rect.x + 30,
-            self.rect.right - 55
-        ):
-
-            pygame.draw.rect(
-                screen,
-                LIGHT_BLUE,
-                (
-                    wx,
-                    self.rect.y + 42,
-                    25,
-                    24
-                )
-            )
-
-            pygame.draw.line(
-                screen,
-                WHITE,
-                (
-                    wx + 12,
-                    self.rect.y + 42
-                ),
-                (
-                    wx + 12,
-                    self.rect.y + 66
-                ),
-                2
-            )
-
-        draw_centered(
-            self.name,
-            self.rect.centerx,
-            self.rect.y + 77,
-            WHITE,
-            small_font
-        )
+        visual_art.draw_building(screen, self.rect, self.name)
+        draw_centered(self.name, self.rect.centerx, self.rect.bottom+5, WHITE, small_font)
 
 
 # ============================================================
@@ -2936,25 +2802,7 @@ RESOURCE_KEYS = ("wood", "stone", "wool")
 
 # Ресурсные пиктограммы: бревно, скала, шерсть. Работают с любым шрифтом.
 def draw_resource_icon(surface, material, cx, cy, size=24):
-    x, y, r = int(cx), int(cy), max(7, int(size//2))
-    if material == "wood":
-        pygame.draw.line(surface, (77, 47, 29), (x-r, y+r//2), (x+r-2, y-r//2), max(5, r))
-        pygame.draw.line(surface, (152, 103, 56), (x-r, y+r//2-2), (x+r-2, y-r//2-2), max(3, r-3))
-        pygame.draw.ellipse(surface, (202, 160, 95), (x+r-6, y-r//2-r//3, max(7,r//2+3), max(10,r)))
-        pygame.draw.ellipse(surface, (103, 69, 37), (x+r-6, y-r//2-r//3, max(7,r//2+3), max(10,r)), 2)
-        pygame.draw.line(surface, (44, 116, 58), (x-r+4, y-r//2), (x-r-1, y-r), 3)
-    elif material == "stone":
-        pts=[(x-r,y+r//2),(x-r//2,y-r),(x+r//2,y-r+1),(x+r,y+r//3),
-             (x+r//3,y+r),(x-r+2,y+r)]
-        pygame.draw.polygon(surface,(121,130,139),pts)
-        pygame.draw.polygon(surface,(203,209,202),[(x-r//2,y-r),(x+r//2,y-r+1),(x,y),(x-r,y+r//2)])
-        pygame.draw.polygon(surface,(66,80,88),pts,2)
-    else:
-        # Клубок шерсти с фактурными завитками.
-        for dx,dy,rr in ((-r//2,0,r//2),(0,-r//2,r//2),(r//2,0,r//2),(0,r//2,r//2),(0,0,r//2+2)):
-            pygame.draw.circle(surface,(239,233,211),(x+dx,y+dy),rr+2)
-            pygame.draw.circle(surface,(165,148,130),(x+dx,y+dy),rr+2,1)
-        pygame.draw.arc(surface,(145,130,114),(x-5,y-3,10,10),0.4,5.6,2)
+    visual_art.draw_resource(surface, material, cx, cy, size)
 
 
 def draw_resource_icons_row(surface, amounts, x, y, spacing=92, font_obj=None, icon_size=23):
@@ -3653,32 +3501,26 @@ class Game:
 
     def draw_island_scene(self):
         col=self.colony()
-        screen.fill((112,159,180))
-        pygame.draw.rect(screen,(74,143,162),(0,HEIGHT-117,WIDTH,117))
-        pygame.draw.rect(screen,(119,167,89),(0,HUD_HEIGHT,WIDTH,HEIGHT-HUD_HEIGHT-112))
-        for y in range(HUD_HEIGHT+17,HEIGHT-125,37):
-            for x in range((y%41),WIDTH,59):
-                pygame.draw.circle(screen,(100,150,77),(x,y),3)
+        screen.blit(visual_art.island_ground(WIDTH, HEIGHT, HUD_HEIGHT), (0, 0))
         draw_centered(self.colony_island.name.upper(),WIDTH//2,81,GOLD,big_font)
         status={'player':'ВАШ ОСТРОВ','neutral':'НЕЙТРАЛЬНЫЙ','pirate':'ПИРАТСКИЙ'}[col.owner]
         draw_centered(status,WIDTH//2,119,FACTION_COLORS[col.owner],font)
         for name,x,y in self.island_nodes():
             zone=col.zones[name]
-            if name=='stone':
-                for dx,dy,r in ((-29,6,20),(3,-14,27),(37,7,17)):
-                    pygame.draw.polygon(screen,(138,142,141),
-                        [(x+dx-r,y+dy+18),(x+dx-r//3,y+dy-r),
-                         (x+dx+r,y+dy-5),(x+dx+r,y+dy+18)])
-            elif name=='wood':
-                for dx in (-26,0,26):
-                    pygame.draw.rect(screen,(97,66,38),(x+dx-5,y-9,10,69))
-                    pygame.draw.circle(screen,(39,113,57),(x+dx,y-23),31)
-                    pygame.draw.circle(screen,(65,153,68),(x+dx-13,y-35),17)
+            if name == 'stone':
+                visual_art.draw_resource(screen, 'stone', x, y, 108)
+            elif name == 'wood':
+                for dx in (-30, 0, 30):
+                    draw_game_palm(screen, x+dx, y+38, 2.1)
+                visual_art.draw_resource(screen, 'wood', x+22, y+41, 44)
             else:
-                for dx in (-32,10,38):
-                    pygame.draw.ellipse(screen,(234,229,215),(x+dx-18,y-16,37,28))
-                    pygame.draw.circle(screen,(61,49,45),(x+dx-10,y-8),6)
-                    pygame.draw.line(screen,(75,63,51),(x+dx-9,y+12),(x+dx-12,y+27),3)
+                for dx in (-32, 10, 38):
+                    pygame.draw.ellipse(screen, (66, 89, 58), (x+dx-20, y+15, 42, 10))
+                    for leg in (-9, 9):
+                        pygame.draw.line(screen, (64, 53, 42), (x+dx+leg, y+7), (x+dx+leg, y+24), 3)
+                    visual_art.draw_resource(screen, 'wool', x+dx, y, 43)
+                    pygame.draw.ellipse(screen, (72, 62, 49), (x+dx-25, y-5, 13, 19))
+                    pygame.draw.circle(screen, (220, 205, 165), (x+dx-21, y), 2)
             draw_resource_icon(screen,name,x-44,y-100,29)
             draw_centered(RESOURCE_NAMES[name],x+12,y-99,WHITE,font)
             state='НЕ АКТИВНО' if not zone['active'] else f"{zone['pending']}/{RESOURCE_CAP[name]}"
@@ -3688,27 +3530,21 @@ class Game:
                 pygame.draw.line(screen,(230,211,147),(x-45,y+39),(x-38+wobble,y+24),5)
                 pygame.draw.circle(screen,(252,196,92),(x-42+wobble,y+20),4)
         if col.house:
-            draw_game_house(screen,496,406,2.0,(164,95,47))
-            draw_centered('ДОМ РАБОТНИКА',540,398,WHITE,small_font)
+            visual_art.draw_building(screen, pygame.Rect(496,406,88,70), 'house')
+            draw_centered('ДОМ РАБОТНИКА',540,369,WHITE,small_font)
             if col.worker:
                 wx=530+int(math.sin(self.colony_time*.7)*115)
                 wy=466+int(math.cos(self.colony_time*.7)*18)
-                pygame.draw.circle(screen,(228,189,151),(wx,wy-11),8)
-                pygame.draw.rect(screen,(88,74,119),(wx-9,wy,18,18))
+                visual_art.draw_person(screen, wx, wy, 'worker')
         if col.fort:
-            pygame.draw.rect(screen,(127,124,114),(170,418,96,67))
-            for x in range(172,266,20):
-                pygame.draw.rect(screen,(166,164,146),(x,407,15,25))
-            draw_centered('КРЕПОСТЬ',218,396,WHITE,small_font)
+            visual_art.draw_building(screen, pygame.Rect(170,418,96,67), 'fort')
+            draw_centered('КРЕПОСТЬ',218,377,WHITE,small_font)
         if col.market:
-            pygame.draw.polygon(screen,(201,157,84),[(380,405),(440,405),(450,448),(370,448)])
-            pygame.draw.polygon(screen,(149,57,41),[(365,405),(410,378),(455,405)])
+            visual_art.draw_building(screen, pygame.Rect(370,405,80,55), 'market')
             draw_centered('РЫНОК',410,360,WHITE,small_font)
         if col.shipyard:
-            pygame.draw.rect(screen,(133,89,47),(828,418,114,47))
-            for x in range(837,943,15):
-                pygame.draw.line(screen,(84,52,30),(x,418),(x,465),2)
-            draw_centered('ВЕРФЬ',885,397,WHITE,small_font)
+            visual_art.draw_building(screen, pygame.Rect(828,418,114,62), 'shipyard')
+            draw_centered('ВЕРФЬ',885,377,WHITE,small_font)
         self.player.draw()
         self.draw_hud()
         bottom='WASD ходить   E добыча/сбор   C захват   B строить   V рынок   ESC выход'
@@ -3868,20 +3704,9 @@ class Game:
             self.show_message("Подойдите к хозяину помещения (в центре).")
 
     def draw_person(self, x, y, color, name=None, scale=1):
-        x, y = int(x), int(y)
-        pygame.draw.ellipse(screen, (31, 30, 29),
-                            (x-14, y+17, 28, 8))
-        pygame.draw.line(screen, (46, 38, 36), (x-6, y+6),
-                         (x-8, y+21), 5)
-        pygame.draw.line(screen, (46, 38, 36), (x+6, y+6),
-                         (x+8, y+21), 5)
-        pygame.draw.rect(screen, color, (x-11, y-19, 22, 28),
-                         border_radius=5)
-        pygame.draw.circle(screen, (215, 167, 121), (x, y-27), 11)
-        pygame.draw.ellipse(screen, (47, 36, 32), (x-14, y-39, 28, 12))
-        pygame.draw.rect(screen, (77, 53, 34), (x-9, y-44, 18, 10))
+        visual_art.draw_person(screen, x, y, name or '', scale)
         if name:
-            draw_centered(name, x, y-67, WHITE, small_font)
+            draw_centered(name, x, y-56*scale, WHITE, small_font)
 
     def draw_day_night(self):
         hour = self.city_minutes / 60
@@ -4031,12 +3856,6 @@ class Game:
         for x in range(55, WIDTH-50, 85):
             pygame.draw.line(screen, (125, 90, 61),
                              (x, 404), (x-35, HEIGHT-87), 2)
-        # Небольшая стойка по бокам, оставляем проход к NPC.
-        for x in (240, 665):
-            pygame.draw.rect(screen, (78, 48, 31), (x, 324, 190, 45),
-                             border_radius=7)
-            pygame.draw.rect(screen, (162, 111, 64), (x, 319, 190, 14),
-                             border_radius=4)
         who = self.room_people[self.room_kind][0]
         self.draw_person(WIDTH//2, 320, (83, 110, 95), who)
         if self.room_kind == "tavern":
@@ -4359,6 +4178,7 @@ class Game:
                     pygame.draw.line(surf, (180, 188, 184), (x, 296), (x, 360), 7)
                     pygame.draw.arc(surf, (180, 188, 184), (x-26, 333, 52, 49),
                                     0, math.pi, 6)
+            visual_art.decorate_room(surf, title)
             self._room_art_cache[title] = surf
         screen.blit(self._room_art_cache[title], (0, 0))
 
